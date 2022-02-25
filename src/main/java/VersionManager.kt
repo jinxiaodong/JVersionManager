@@ -216,6 +216,10 @@ object Deps {
     const val koin_android = "io.insert-koin:koin-android:${Version.koin_version}"
     const val koin_android_compat = "io.insert-koin:koin-android-compat:${Version.koin_version}"
     const val koin_test = "io.insert-koin:koin-test:${Version.koin_version}"
+
+    //immersionbar
+    const val immersionbar = "com.geyifeng.immersionbar:immersionbar:3.2.1"
+    const val immersionbar_ktx = "com.geyifeng.immersionbar:immersionbar-ktx:3.2.1"
 }
 
 
