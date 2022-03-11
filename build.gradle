@@ -1,18 +1,24 @@
 buildscript {
     repositories {
-        mavenCentral()
-        google()
+        maven {
+            allowInsecureProtocol = true
+            url 'http://localhost:8081/artifactory/android'
+        }
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.10"
     }
 }
+
 apply plugin: 'kotlin'
 apply plugin: 'java-gradle-plugin'
+apply plugin: 'maven-publish'
 
 repositories {
-    mavenCentral()
-    google()
+    maven {
+        allowInsecureProtocol = true
+        url 'http://localhost:8081/artifactory/android'
+    }
 }
 dependencies {
     implementation gradleApi()
@@ -33,6 +39,29 @@ gradlePlugin {
         version {
             id = 'com.jarvis.plugin.version'
             implementationClass = 'com.jarvis.version.VersionPlugin'
+        }
+    }
+}
+
+
+
+publishing {
+    publications {
+        //配置POM
+        maven(MavenPublication) {
+            groupId = 'com.test'
+            artifactId = 'plugin'
+            version = '1.0.1-SNAPSHOT'
+
+            from components.java
+        }
+    }
+
+    repositories {
+        //
+        maven {
+            name = "file1"
+            url = "/Users/jinxiaodong/Desktop/Temp"
         }
     }
 }
