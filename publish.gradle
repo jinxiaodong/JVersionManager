@@ -1,0 +1,43 @@
+apply plugin: 'maven-publish'
+
+def userName = 'admin'
+def passWord = 'admin'
+
+def releaseUrl = "http://localhost:8081/artifactory/jarvis_android_plugin/"
+def snapshotUrl = "http://localhost:8081/artifactory/jarvis_android_plugin/"
+
+
+afterEvaluate {
+    publishing {
+        publications {
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                // Applies the component for the release build variant.
+                from components.java
+                // You can then customize attributes of the publication as shown below.
+                groupId = GROUP
+                artifactId = ARTIFACTID
+                version = VERSION_NAME
+            }
+            // Creates a Maven publication called “debug”.
+            debug(MavenPublication) {
+                // Applies the component for the debug build variant.
+                from components.java
+                groupId = GROUP
+                artifactId = ARTIFACTID
+                version = VERSION_NAME_SNAPSHOT
+            }
+        }
+
+        repositories {
+            maven {
+                allowInsecureProtocol = true
+                credentials {
+                    username = userName
+                    password = passWord
+                }
+                url = releaseUrl
+            }
+        }
+    }
+}

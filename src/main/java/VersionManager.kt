@@ -1,5 +1,3 @@
-
-
 /**
  * @author jinxiaodong
  * @description：
@@ -33,7 +31,7 @@ private object Version {
     const val webkit = "1.4.0"
     const val media = "1.5.0"
     const val koin_version = "3.1.5"
-
+    const val l = 126
 }
 
 object Kotlin {
